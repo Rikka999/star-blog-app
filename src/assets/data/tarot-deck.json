@@ -1,0 +1,720 @@
+{
+  "majorArcana": [
+    {
+      "id": 0,
+      "name": "愚者",
+      "nameEn": "The Fool",
+      "keyword": ["开始","冒险","大胆","天真","我行我素","潜力","漂泊","旅行"],
+      "upright": ["新的开始", "冒险精神", "自由无拘"],
+      "reversed": ["鲁莽冲动", "风险失控", "缺乏规划"],
+      "image": "0-fool.webp",
+      "suit": null
+    },
+    {
+      "id": 1,
+      "name": "魔术师",
+      "nameEn": "The Magician",
+      "upright": ["技能精通", "创造力", "专注力"],
+      "reversed": ["欺骗", "能量浪费", "未实现的潜力"],
+      "image": "1-magician.webp",
+      "suit": null
+    },
+    {
+      "id": 2,
+      "name": "女祭司",
+      "nameEn": "The High Priestess",
+      "upright": ["直觉", "潜意识", "神秘智慧"],
+      "reversed": ["隐藏动机", "忽视直觉", "情绪化"],
+      "image": "2-high-priestess.webp",
+      "suit": null
+    },
+    {
+      "id": 3,
+      "name": "皇后",
+      "nameEn": "The Empress",
+      "upright": ["丰饶", "母性", "感官享受"],
+      "reversed": ["依赖", "挥霍", "忽视自我"],
+      "image": "3-empress.webp",
+      "suit": null
+    },
+    {
+      "id": 4,
+      "name": "皇帝",
+      "nameEn": "The Emperor",
+      "upright": ["权威", "结构", "领导力"],
+      "reversed": ["专制", "僵化", "滥用权力"],
+      "image": "4-emperor.webp",
+      "suit": null
+    },
+    {
+      "id": 5,
+      "name": "教皇",
+      "nameEn": "The Hierophant",
+      "upright": ["传统", "教育", "精神指引"],
+      "reversed": ["教条主义", "反叛", "打破常规"],
+      "image": "5-hierophant.webp",
+      "suit": null
+    },
+    {
+      "id": 6,
+      "name": "恋人",
+      "nameEn": "The Lovers",
+      "upright": ["爱情", "选择", "价值观契合"],
+      "reversed": ["失衡", "冲突", "错误选择"],
+      "image": "6-lovers.webp",
+      "suit": null
+    },
+    {
+      "id": 7,
+      "name": "战车",
+      "nameEn": "The Chariot",
+      "upright": ["意志力", "胜利", "自我控制"],
+      "reversed": ["失控", "侵略性", "方向迷失"],
+      "image": "7-chariot.webp",
+      "suit": null
+    },
+    {
+      "id": 8,
+      "name": "力量",
+      "nameEn": "Strength",
+      "upright": ["勇气", "耐心", "以柔克刚"],
+      "reversed": ["自我怀疑", "软弱", "滥用力量"],
+      "image": "8-strength.webp",
+      "suit": null
+    },
+    {
+      "id": 9,
+      "name": "隐士",
+      "nameEn": "The Hermit",
+      "upright": ["自省", "孤独", "内在智慧"],
+      "reversed": ["孤立", "过度谨慎", "拒绝帮助"],
+      "image": "9-hermit.webp",
+      "suit": null
+    },
+    {
+      "id": 10,
+      "name": "命运之轮",
+      "nameEn": "Wheel of Fortune",
+      "upright": ["转变", "机遇", "命运周期"],
+      "reversed": ["抗拒改变", "坏运气", "失控"],
+      "image": "10-wheel-of-fortune.webp",
+      "suit": null
+    },
+    {
+      "id": 11,
+      "name": "正义",
+      "nameEn": "Justice",
+      "upright": ["公平", "因果", "法律事务"],
+      "reversed": ["不公", "偏见", "逃避责任"],
+      "image": "11-justice.webp",
+      "suit": null
+    },
+    {
+      "id": 12,
+      "name": "倒吊人",
+      "nameEn": "The Hanged Man",
+      "upright": ["牺牲", "新视角", "等待"],
+      "reversed": ["无谓牺牲", "拖延", "抗拒改变"],
+      "image": "12-hanged-man.webp",
+      "suit": null
+    },
+    {
+      "id": 13,
+      "name": "死神",
+      "nameEn": "Death",
+      "upright": ["结束", "转变", "新生"],
+      "reversed": ["停滞", "恐惧改变", "苟延残喘"],
+      "image": "13-death.webp",
+      "suit": null
+    },
+    {
+      "id": 14,
+      "name": "节制",
+      "nameEn": "Temperance",
+      "upright": ["平衡", "调和", "中庸之道"],
+      "reversed": ["失衡", "极端", "资源浪费"],
+      "image": "14-temperance.webp",
+      "suit": null
+    },
+    {
+      "id": 15,
+      "name": "恶魔",
+      "nameEn": "The Devil",
+      "upright": ["欲望", "束缚", "物质主义"],
+      "reversed": ["解脱", "打破枷锁", "看清真相"],
+      "image": "15-devil.webp",
+      "suit": null
+    },
+    {
+      "id": 16,
+      "name": "高塔",
+      "nameEn": "The Tower",
+      "upright": ["剧变", "觉醒", "打破幻想"],
+      "reversed": ["恐惧改变", "避免灾难", "压抑情绪"],
+      "image": "16-tower.webp",
+      "suit": null
+    },
+    {
+      "id": 17,
+      "name": "星星",
+      "nameEn": "The Star",
+      "upright": ["希望", "灵感", "精神指引"],
+      "reversed": ["绝望", "失去信心", "忽视直觉"],
+      "image": "17-star.webp",
+      "suit": null
+    },
+    {
+      "id": 18,
+      "name": "月亮",
+      "nameEn": "The Moon",
+      "upright": ["潜意识", "幻觉", "直觉"],
+      "reversed": ["困惑", "欺骗", "隐藏恐惧"],
+      "image": "18-moon.webp",
+      "suit": null
+    },
+    {
+      "id": 19,
+      "name": "太阳",
+      "nameEn": "The Sun",
+      "upright": ["快乐", "成功", "活力"],
+      "reversed": ["暂时挫折", "过度乐观", "幼稚"],
+      "image": "19-sun.webp",
+      "suit": null
+    },
+    {
+      "id": 20,
+      "name": "审判",
+      "nameEn": "Judgement",
+      "upright": ["觉醒", "重生", "使命召唤"],
+      "reversed": ["自我怀疑", "错失机会", "恐惧改变"],
+      "image": "20-judgement.webp",
+      "suit": null
+    },
+    {
+      "id": 21,
+      "name": "世界",
+      "nameEn": "The World",
+      "upright": ["完成", "整合", "成就"],
+      "reversed": ["未完成", "延迟", "恐惧成功"],
+      "image": "21-world.webp",
+      "suit": null
+    }
+  ],
+  "minorArcana": {
+    "wands": [
+      {
+        "id": 22,
+        "name": "权杖Ace",
+        "nameEn": "Ace of Wands",
+        "upright": ["新机会", "激情", "创造力迸发"],
+        "reversed": ["延迟", "失去动力", "错失良机"],
+        "image": "wands-1.webp",
+        "suit": "wands"
+      },
+      {
+        "id": 23,
+        "name": "权杖二",
+        "nameEn": "Two of Wands",
+        "upright": ["规划", "未来展望", "潜在可能"],
+        "reversed": ["犹豫不决", "视野狭窄", "错失机会"],
+        "image": "wands-2.webp",
+        "suit": "wands"
+      },
+      {
+        "id": 24,
+        "name": "权杖三",
+        "nameEn": "Three of Wands",
+        "upright": ["远见", "合作", "初步成就"],
+        "reversed": ["挫折", "延迟", "缺乏远见"],
+        "image": "wands-3.webp",
+        "suit": "wands"
+      },
+      {
+        "id": 25,
+        "name": "权杖四",
+        "nameEn": "Four of Wands",
+        "upright": ["庆祝", "稳定", "家庭和谐"],
+        "reversed": ["过渡期", "不稳定", "短暂快乐"],
+        "image": "wands-4.webp",
+        "suit": "wands"
+      },
+      {
+        "id": 26,
+        "name": "权杖五",
+        "nameEn": "Five of Wands",
+        "upright": ["竞争", "冲突", "多样化观点"],
+        "reversed": ["避免冲突", "不公平竞争", "内耗"],
+        "image": "wands-5.webp",
+        "suit": "wands"
+      },
+      {
+        "id": 27,
+        "name": "权杖六",
+        "nameEn": "Six of Wands",
+        "upright": ["胜利", "认可", "进步"],
+        "reversed": ["骄傲", "过度自信", "未获认可"],
+        "image": "wands-6.webp",
+        "suit": "wands"
+      },
+      {
+        "id": 28,
+        "name": "权杖七",
+        "nameEn": "Seven of Wands",
+        "upright": ["坚持", "捍卫立场", "挑战"],
+        "reversed": ["不堪重负", "放弃", "优柔寡断"],
+        "image": "wands-7.webp",
+        "suit": "wands"
+      },
+      {
+        "id": 29,
+        "name": "权杖八",
+        "nameEn": "Eight of Wands",
+        "upright": ["快速行动", "进展", "消息"],
+        "reversed": ["延迟", "混乱", "冲动决定"],
+        "image": "wands-8.webp",
+        "suit": "wands"
+      },
+      {
+        "id": 30,
+        "name": "权杖九",
+        "nameEn": "Nine of Wands",
+        "upright": ["韧性", "警惕", "最后防线"],
+        "reversed": ["精疲力尽", "偏执", "过度防御"],
+        "image": "wands-9.webp",
+        "suit": "wands"
+      },
+      {
+        "id": 31,
+        "name": "权杖十",
+        "nameEn": "Ten of Wands",
+        "upright": ["负担", "责任", "过度劳累"],
+        "reversed": ["释放负担", "优先级错乱", "委派任务"],
+        "image": "wands-10.webp",
+        "suit": "wands"
+      },
+      {
+        "id": 32,
+        "name": "权杖侍从",
+        "nameEn": "Page of Wands",
+        "upright": ["新消息", "热情", "创意萌芽"],
+        "reversed": ["拖延", "不可靠", "创意受阻"],
+        "image": "wands-11.webp",
+        "suit": "wands"
+      },
+      {
+        "id": 33,
+        "name": "权杖骑士",
+        "nameEn": "Knight of Wands",
+        "upright": ["行动力", "冒险", "热情"],
+        "reversed": ["冲动", "鲁莽", "缺乏耐心"],
+        "image": "wands-12.webp",
+        "suit": "wands"
+      },
+      {
+        "id": 34,
+        "name": "权杖王后",
+        "nameEn": "Queen of Wands",
+        "upright": ["魅力", "自信", "领导力"],
+        "reversed": ["嫉妒", "不安全感", "专横"],
+        "image": "wands-13.webp",
+        "suit": "wands"
+      },
+      {
+        "id": 35,
+        "name": "权杖国王",
+        "nameEn": "King of Wands",
+        "upright": ["远见", "企业家精神", "权威"],
+        "reversed": ["专制", "冲动", "残酷"],
+        "image": "wands-14.webp",
+        "suit": "wands"
+      }
+    ],
+    "cups": [
+      {
+        "id": 36,
+        "name": "圣杯Ace",
+        "nameEn": "Ace of Cups",
+        "upright": ["情感开始", "直觉", "喜悦"],
+        "reversed": ["情感封闭", "孤独", "情绪泛滥"],
+        "image": "cups-1.webp",
+        "suit": "cups"
+      },
+      {
+        "id": 37,
+        "name": "圣杯二",
+        "nameEn": "Two of Cups",
+        "upright": ["伙伴关系", "和谐", "相互吸引"],
+        "reversed": ["失衡", "沟通不畅", "冲突"],
+        "image": "cups-2.webp",
+        "suit": "cups"
+      },
+      {
+        "id": 38,
+        "name": "圣杯三",
+        "nameEn": "Three of Cups",
+        "upright": ["庆祝", "友谊", "社交"],
+        "reversed": ["过度享乐", "孤立", "三角关系"],
+        "image": "cups-3.webp",
+        "suit": "cups"
+      },
+      {
+        "id": 39,
+        "name": "圣杯四",
+        "nameEn": "Four of Cups",
+        "upright": ["沉思", "不满", "新机会"],
+        "reversed": ["觉醒", "接受机会", "行动"],
+        "image": "cups-4.webp",
+        "suit": "cups"
+      },
+      {
+        "id": 40,
+        "name": "圣杯五",
+        "nameEn": "Five of Cups",
+        "upright": ["失落", "遗憾", "聚焦负面"],
+        "reversed": ["接受", "疗愈", "向前看"],
+        "image": "cups-5.webp",
+        "suit": "cups"
+      },
+      {
+        "id": 41,
+        "name": "圣杯六",
+        "nameEn": "Six of Cups",
+        "upright": ["怀旧", "童年", "单纯快乐"],
+        "reversed": ["沉溺过去", "不成熟", "拒绝成长"],
+        "image": "cups-6.webp",
+        "suit": "cups"
+      },
+      {
+        "id": 42,
+        "name": "圣杯七",
+        "nameEn": "Seven of Cups",
+        "upright": ["选择", "幻想", "白日梦"],
+        "reversed": ["清晰", "决定", "面对现实"],
+        "image": "cups-7.webp",
+        "suit": "cups"
+      },
+      {
+        "id": 43,
+        "name": "圣杯八",
+        "nameEn": "Eight of Cups",
+        "upright": ["离开", "寻找意义", "精神追求"],
+        "reversed": ["停滞", "恐惧改变", "错误放弃"],
+        "image": "cups-8.webp",
+        "suit": "cups"
+      },
+      {
+        "id": 44,
+        "name": "圣杯九",
+        "nameEn": "Nine of Cups",
+        "upright": ["满足", "愿望实现", "感官享受"],
+        "reversed": ["过度放纵", "虚荣", "不满足"],
+        "image": "cups-9.webp",
+        "suit": "cups"
+      },
+      {
+        "id": 45,
+        "name": "圣杯十",
+        "nameEn": "Ten of Cups",
+        "upright": ["和谐", "家庭幸福", "情感圆满"],
+        "reversed": ["冲突", "不和谐", "理想化"],
+        "image": "cups-10.webp",
+        "suit": "cups"
+      },
+      {
+        "id": 46,
+        "name": "圣杯侍从",
+        "nameEn": "Page of Cups",
+        "upright": ["敏感", "创意灵感", "直觉信息"],
+        "reversed": ["情绪化", "不成熟", "拒绝直觉"],
+        "image": "cups-11.webp",
+        "suit": "cups"
+      },
+      {
+        "id": 47,
+        "name": "圣杯骑士",
+        "nameEn": "Knight of Cups",
+        "upright": ["浪漫", "理想主义", "情感表达"],
+        "reversed": ["情绪化", "不切实际", "操纵"],
+        "image": "cups-12.webp",
+        "suit": "cups"
+      },
+      {
+        "id": 48,
+        "name": "圣杯王后",
+        "nameEn": "Queen of Cups",
+        "upright": ["同理心", "直觉", "滋养"],
+        "reversed": ["过度敏感", "依赖", "情绪不稳定"],
+        "image": "cups-13.webp",
+        "suit": "cups"
+      },
+      {
+        "id": 49,
+        "name": "圣杯国王",
+        "nameEn": "King of Cups",
+        "upright": ["情感平衡", "智慧", "成熟"],
+        "reversed": ["情绪压抑", "冷漠", "滥用情感"],
+        "image": "cups-14.webp",
+        "suit": "cups"
+      }
+    ],
+    "swords": [
+      {
+        "id": 50,
+        "name": "宝剑Ace",
+        "nameEn": "Ace of Swords",
+        "upright": ["思维清晰", "突破", "真相"],
+        "reversed": ["混乱", "过度分析", "言语伤害"],
+        "image": "swords-1.webp",
+        "suit": "swords"
+      },
+      {
+        "id": 51,
+        "name": "宝剑二",
+        "nameEn": "Two of Swords",
+        "upright": ["僵局", "艰难选择", "回避"],
+        "reversed": ["优柔寡断", "信息过载", "被迫决定"],
+        "image": "swords-2.webp",
+        "suit": "swords"
+      },
+      {
+        "id": 52,
+        "name": "宝剑三",
+        "nameEn": "Three of Swords",
+        "upright": ["心碎", "痛苦", "分离"],
+        "reversed": ["疗愈", "宽恕", "释怀"],
+        "image": "swords-3.webp",
+        "suit": "swords"
+      },
+      {
+        "id": 53,
+        "name": "宝剑四",
+        "nameEn": "Four of Swords",
+        "upright": ["休息", "恢复", "冥想"],
+        "reversed": ["倦怠", "孤立", "过早行动"],
+        "image": "swords-4.webp",
+        "suit": "swords"
+      },
+      {
+        "id": 54,
+        "name": "宝剑五",
+        "nameEn": "Five of Swords",
+        "upright": ["冲突", "短暂胜利", "代价"],
+        "reversed": ["和解", "避免冲突", "道德胜利"],
+        "image": "swords-5.webp",
+        "suit": "swords"
+      },
+      {
+        "id": 55,
+        "name": "宝剑六",
+        "nameEn": "Six of Swords",
+        "upright": ["过渡", "疗愈之旅", "前行"],
+        "reversed": ["停滞", "无法释怀", "困难过渡"],
+        "image": "swords-6.webp",
+        "suit": "swords"
+      },
+      {
+        "id": 56,
+        "name": "宝剑七",
+        "nameEn": "Seven of Swords",
+        "upright": ["策略", "回避", "独自行动"],
+        "reversed": ["暴露", "自我欺骗", "不道德"],
+        "image": "swords-7.webp",
+        "suit": "swords"
+      },
+      {
+        "id": 57,
+        "name": "宝剑八",
+        "nameEn": "Eight of Swords",
+        "upright": ["限制", "无力感", "自我设限"],
+        "reversed": ["解放", "新视角", "寻求帮助"],
+        "image": "swords-8.webp",
+        "suit": "swords"
+      },
+      {
+        "id": 58,
+        "name": "宝剑九",
+        "nameEn": "Nine of Swords",
+        "upright": ["焦虑", "噩梦", "过度担忧"],
+        "reversed": ["希望", "寻求帮助", "理性面对"],
+        "image": "swords-9.webp",
+        "suit": "swords"
+      },
+      {
+        "id": 59,
+        "name": "宝剑十",
+        "nameEn": "Ten of Swords",
+        "upright": ["结束", "痛苦低谷", "重生前夕"],
+        "reversed": ["恢复", "避免最后伤害", "韧性"],
+        "image": "swords-10.webp",
+        "suit": "swords"
+      },
+      {
+        "id": 60,
+        "name": "宝剑侍从",
+        "nameEn": "Page of Swords",
+        "upright": ["好奇心", "新想法", "警惕"],
+        "reversed": ["冲动", "轻率言行", "缺乏计划"],
+        "image": "swords-11.webp",
+        "suit": "swords"
+      },
+      {
+        "id": 61,
+        "name": "宝剑骑士",
+        "nameEn": "Knight of Swords",
+        "upright": ["行动力", "直接", "理智"],
+        "reversed": ["鲁莽", "侵略性", "不计后果"],
+        "image": "swords-12.webp",
+        "suit": "swords"
+      },
+      {
+        "id": 62,
+        "name": "宝剑王后",
+        "nameEn": "Queen of Swords",
+        "upright": ["独立", "清晰思维", "客观"],
+        "reversed": ["冷酷", "苛刻", "情感隔离"],
+        "image": "swords-13.webp",
+        "suit": "swords"
+      },
+      {
+        "id": 63,
+        "name": "宝剑国王",
+        "nameEn": "King of Swords",
+        "upright": ["权威", "理性", "公正"],
+        "reversed": ["操纵", "残酷", "滥用权力"],
+        "image": "swords-14.webp",
+        "suit": "swords"
+      }
+    ],
+    "pentacles": [
+      {
+        "id": 64,
+        "name": "星币Ace",
+        "nameEn": "Ace of Pentacles",
+        "upright": ["物质开始", "财富机会", "稳定"],
+        "reversed": ["财务损失", "短视", "资源浪费"],
+        "image": "pentacles-1.webp",
+        "suit": "pentacles"
+      },
+      {
+        "id": 65,
+        "name": "星币二",
+        "nameEn": "Two of Pentacles",
+        "upright": ["平衡", "适应", "资源管理"],
+        "reversed": ["失衡", "过度扩张", "财务压力"],
+        "image": "pentacles-2.webp",
+        "suit": "pentacles"
+      },
+      {
+        "id": 66,
+        "name": "星币三",
+        "nameEn": "Three of Pentacles",
+        "upright": ["团队合作", "技能发展", "精心制作"],
+        "reversed": ["缺乏合作", "平庸", "错误规划"],
+        "image": "pentacles-3.webp",
+        "suit": "pentacles"
+      },
+      {
+        "id": 67,
+        "name": "星币四",
+        "nameEn": "Four of Pentacles",
+        "upright": ["节俭", "控制", "稳定性"],
+        "reversed": ["吝啬", "恐惧改变", "财务僵化"],
+        "image": "pentacles-4.webp",
+        "suit": "pentacles"
+      },
+      {
+        "id": 68,
+        "name": "星币五",
+        "nameEn": "Five of Pentacles",
+        "upright": ["财务困难", "孤立", "物质缺乏"],
+        "reversed": ["复苏", "寻求帮助", "精神富足"],
+        "image": "pentacles-5.webp",
+        "suit": "pentacles"
+      },
+      {
+        "id": 69,
+        "name": "星币六",
+        "nameEn": "Six of Pentacles",
+        "upright": ["慷慨", "慈善", "资源共享"],
+        "reversed": ["权力失衡", "自私", "债务问题"],
+        "image": "pentacles-6.webp",
+        "suit": "pentacles"
+      },
+      {
+        "id": 70,
+        "name": "星币七",
+        "nameEn": "Seven of Pentacles",
+        "upright": ["耐心", "长期投资", "评估"],
+        "reversed": ["挫败", "急于结果", "资源浪费"],
+        "image": "pentacles-7.webp",
+        "suit": "pentacles"
+      },
+      {
+        "id": 71,
+        "name": "星币八",
+        "nameEn": "Eight of Pentacles",
+        "upright": ["技艺", "专注", "质量"],
+        "reversed": ["匆忙", "平庸", "缺乏激情"],
+        "image": "pentacles-8.webp",
+        "suit": "pentacles"
+      },
+      {
+        "id": 72,
+        "name": "星币九",
+        "nameEn": "Nine of Pentacles",
+        "upright": ["自足", "奢侈", "收获"],
+        "reversed": ["过度消费", "虚假成功", "孤独"],
+        "image": "pentacles-9.webp",
+        "suit": "pentacles"
+      },
+      {
+        "id": 73,
+        "name": "星币十",
+        "nameEn": "Ten of Pentacles",
+        "upright": ["财富传承", "家庭安全", "长期成功"],
+        "reversed": ["财务冲突", "不稳定", "短视"],
+        "image": "pentacles-10.webp",
+        "suit": "pentacles"
+      },
+      {
+        "id": 74,
+        "name": "星币侍从",
+        "nameEn": "Page of Pentacles",
+        "upright": ["学习", "务实机会", "新技能"],
+        "reversed": ["缺乏进步", "浪费机会", "不切实际"],
+        "image": "pentacles-11.webp",
+        "suit": "pentacles"
+      },
+      {
+        "id": 75,
+        "name": "星币骑士",
+        "nameEn": "Knight of Pentacles",
+        "upright": ["可靠", "耐心", "务实进步"],
+        "reversed": ["停滞", "无聊", "抗拒改变"],
+        "image": "pentacles-12.webp",
+        "suit": "pentacles"
+      },
+      {
+        "id": 76,
+        "name": "星币王后",
+        "nameEn": "Queen of Pentacles",
+        "upright": ["养育", "务实", "财务安全"],
+        "reversed": ["物质主义", "忽视家庭", "财务焦虑"],
+        "image": "pentacles-13.webp",
+        "suit": "pentacles"
+      },
+      {
+        "id": 77,
+        "name": "星币国王",
+        "nameEn": "King of Pentacles",
+        "upright": ["富足", "商业头脑", "稳定"],
+        "reversed": ["贪婪", "物质主义", "财务冒险"],
+        "image": "pentacles-14.webp",
+        "suit": "pentacles"
+      }
+    ]
+  },
+  "cardBack": {
+    "image": "card-back.webp"
+  }
+}
