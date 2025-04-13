@@ -6,6 +6,7 @@ interface TarotCard {
   name: string
   upright: string[]
   reversed: string[]
+  image: string
 }
 
 export const useTarotStore = defineStore('tarot', {
@@ -30,7 +31,7 @@ export const useTarotStore = defineStore('tarot', {
       const randomIndex = Math.floor(Math.random() * this.deck.length)
       const card = this.deck[randomIndex]
       const orientation = Math.random() > 0.5 ? 'upright' : 'reversed'
-      
+
       this.drawnCards.push({ card, orientation })
       return { card, orientation }
     },
