@@ -16,7 +16,7 @@ export const useTarotStore = defineStore('tarot', {
   }),
 
   actions: {
-    // 初始化牌组（合并大阿卡纳和小阿卡纳）
+    // 初始化牌组
     initDeck() {
       this.deck = [
         ...tarotData.majorArcana,
@@ -24,16 +24,17 @@ export const useTarotStore = defineStore('tarot', {
       ]
     },
 
-    // 抽单张牌
+    // 抽牌
     drawCard() {
-      if (this.deck.length === 0) this.initDeck()
-      
-      const randomIndex = Math.floor(Math.random() * this.deck.length)
-      const card = this.deck[randomIndex]
-      const orientation = Math.random() > 0.5 ? 'upright' : 'reversed'
+      if (this.deck.length === 0) this.initDeck();
+  
+      const randomIndex = Math.floor(Math.random() * this.deck.length);
+      const card = this.deck.splice(randomIndex, 1)[0]; 
 
-      this.drawnCards.push({ card, orientation })
-      return { card, orientation }
+      const orientation = Math.random() > 0.5 ? 'upright' : 'reversed';
+
+      this.drawnCards.push({ card, orientation });
+      return { card, orientation };
     },
 
     // 抽牌阵（如三张牌）
