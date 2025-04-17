@@ -1,35 +1,32 @@
-import { defineStore } from 'pinia'
-import tarotData from '../assets/data/tarot-deck.json' // 或动态加载
+import { defineStore } from 'pinia';
+import tarotData from '@/assets/data/tarot-deck.json'; // 或动态加载
 
 interface TarotCard {
-  id: number
-  name: string
-  upright: string[]
-  reversed: string[]
-  image: string
+  id: number;
+  name: string;
+  upright: string[];
+  reversed: string[];
+  image: string;
 }
 
 export const useTarotStore = defineStore('tarot', {
   state: () => ({
     deck: [] as TarotCard[], // 合并后的牌组
-    drawnCards: [] as {card: TarotCard, orientation: 'upright' | 'reversed'}[]
+    drawnCards: [] as { card: TarotCard; orientation: 'upright' | 'reversed' }[]
   }),
 
   actions: {
     // 初始化牌组
     initDeck() {
-      this.deck = [
-        ...tarotData.majorArcana,
-        ...Object.values(tarotData.minorArcana).flat()
-      ]
+      this.deck = [...tarotData.majorArcana, ...Object.values(tarotData.minorArcana).flat()];
     },
 
     // 抽牌
     drawCard() {
       if (this.deck.length === 0) this.initDeck();
-  
+
       const randomIndex = Math.floor(Math.random() * this.deck.length);
-      const card = this.deck.splice(randomIndex, 1)[0]; 
+      const card = this.deck.splice(randomIndex, 1)[0];
 
       const orientation = Math.random() > 0.5 ? 'upright' : 'reversed';
 
@@ -39,7 +36,7 @@ export const useTarotStore = defineStore('tarot', {
 
     // 抽牌阵（如三张牌）
     drawArray(count: number) {
-      return Array.from({ length: count }, () => this.drawCard())
+      return Array.from({ length: count }, () => this.drawCard());
     }
   }
-})
+});

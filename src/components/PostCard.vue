@@ -1,0 +1,43 @@
+<template>
+  <div
+    class="rounded-2xl shadow-md border border-gray-200 overflow-hidden hover:shadow-lg transition"
+  >
+    <div class="flex items-center gap-2 mb-2">
+      <img :src="post.user.avatar" alt="头像" class="w-6 h-6 rounded-full" />
+      <span class="text-sm text-gray-800">{{ post.user.username }}</span>
+    </div>
+    <img
+      v-if="post.coverImage"
+      :src="post.coverImage"
+      class="w-full h-40 object-cover"
+      alt="封面图"
+    />
+    <div class="p-4">
+      <h2 class="text-xl font-bold mb-2 line-clamp-2">{{ post.title }}</h2>
+      <p class="text-gray-600 text-sm mb-3 line-clamp-3">{{ post.summary }}</p>
+
+      <div class="flex justify-between text-xs text-gray-500">
+        <span>👁 {{ post.views }}</span>
+        <span>👍 {{ post.likes }}</span>
+        <span>💬 {{ post.comments }}</span>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script setup lang="ts">
+defineProps<{
+  post: {
+    title: string;
+    summary: string;
+    coverImage?: string;
+    views: number;
+    likes: number;
+    comments: number;
+    user: {
+      avatar: string;
+      username: string;
+    };
+  };
+}>();
+</script>
