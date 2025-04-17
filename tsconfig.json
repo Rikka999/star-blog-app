@@ -5,14 +5,14 @@
     { "path": "./tsconfig.node.json" }
   ],
   "compilerOptions": {
-    "types": ["element-plus/global", "vue-router"],
-    "typeRoots": ["node_modules/@types", "src/types"],
-    "esModuleInterop": true,
-    "skipLibCheck": true,
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"]
     },
+    "types": ["element-plus/global", "vue-router"],
+    "typeRoots": ["node_modules/@types", "src/types"],
+    "esModuleInterop": true,
+    "skipLibCheck": true,
     "moduleResolution": "node",
     "module": "esnext",
     "target": "esnext",
