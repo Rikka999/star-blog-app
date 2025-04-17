@@ -1,0 +1,259 @@
+<template>
+  <div class="register-container">
+    <el-card class="register-card">
+      <h2 class="register-title">🌟 注册账号</h2>
+      <p class="register-subtitle"></p>
+
+      <el-form :model="form" :rules="rules" ref="formRef" label-width="80px">
+        <!-- 上传头像（去掉label，调整居中） -->
+        <el-form-item>
+          <el-upload
+            class="avatar-uploader"
+            :show-file-list="false"
+            :auto-upload="false"
+            accept="image/*"
+            @change="handleAvatarSelect"
+          >
+            <!-- 确保头像URL正确显示 -->
+            <img v-if="avatarUrl" :src="avatarUrl" class="avatar" />
+            <el-icon v-else><Plus /></el-icon>
+          </el-upload>
+        </el-form-item>
+
+        <!-- 用户名 -->
+        <el-form-item label="用户名" prop="username">
+          <el-input v-model="form.username" placeholder="请输入用户名" />
+        </el-form-item>
+
+        <!-- 密码 -->
+        <el-form-item label="密码" prop="password">
+          <el-input
+            v-model="form.password"
+            type="password"
+            placeholder="请输入密码"
+            show-password
+          />
+        </el-form-item>
+
+        <!-- 确认密码 -->
+        <el-form-item label="确认密码" prop="confirmPassword">
+          <el-input
+            v-model="form.confirmPassword"
+            type="password"
+            placeholder="请确认密码"
+            show-password
+          />
+        </el-form-item>
+
+        <!-- 昵称 -->
+        <el-form-item label="昵称" prop="nickname">
+          <el-input v-model="form.nickname" placeholder="请输入昵称" />
+        </el-form-item>
+
+        <!-- 性别 -->
+        <el-form-item label="性别" prop="sex">
+          <el-radio-group v-model="form.sex">
+            <el-radio value="1">男</el-radio>
+            <el-radio value="2">女</el-radio>
+            <el-radio value="3">其他</el-radio>
+            <el-radio value="4">保密</el-radio>
+          </el-radio-group>
+        </el-form-item>
+
+        <!-- 邮箱 -->
+        <el-form-item label="邮箱" prop="email">
+          <el-input v-model="form.email" />
+        </el-form-item>
+
+        <el-form-item>
+          <el-button type="primary" class="w-full" @click="onRegister">注册</el-button>
+        </el-form-item>
+      </el-form>
+    </el-card>
+  </div>
+</template>
+
+<script lang="ts" setup>
+import { ref, reactive } from 'vue';
+import { ElMessage } from 'element-plus';
+import type { UploadFile } from 'element-plus';
+import { Plus } from '@element-plus/icons-vue';
+import axiosUtil from '@/utils/axios';
+import axios from 'axios';
+import type { FormInstance, FormRules } from 'element-plus';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+const formRef = ref<FormInstance>();
+
+const form = reactive({
+  username: '',
+  password: '',
+  confirmPassword: '',
+  nickname: '',
+  sex: '4',
+  email: '',
+  phoneNumber: '',
+  avatar: '' // 最终传给后端的头像地址
+});
+
+// 新增：头像相关
+const avatarFile = ref<File | null>(null);
+const avatarUrl = ref<string>('');
+
+// 处理头像选择
+const handleAvatarSelect = (uploadFile: UploadFile) => {
+  const file = uploadFile?.raw;
+  if (file) {
+    avatarFile.value = file;
+    avatarUrl.value = URL.createObjectURL(file);
+  }
+  console.log(file);
+  console.log(avatarUrl.value);
+  return false;
+};
+
+// 注册规则
+const rules: FormRules = {
+  username: [
+    { required: true, message: '请输入用户名', trigger: 'blur' },
+    { min: 6, max: 12, message: '用户名长度应为 6 到 12 个字符', trigger: 'blur' }
+  ],
+  password: [
+    { required: true, message: '请输入密码', trigger: 'blur' },
+    { min: 6, max: 24, message: '密码长度应为 6 到 24 个字符', trigger: 'blur' }
+  ],
+  confirmPassword: [
+    { required: true, message: '请确认密码', trigger: 'blur' },
+    {
+      validator: (_rule, value, callback) => {
+        if (value !== form.password) {
+          callback(new Error('两次密码不一致'));
+        } else {
+          callback();
+        }
+      },
+      trigger: 'blur'
+    }
+  ],
+  nickname: [
+    { required: true, message: '请输入昵称', trigger: 'blur' },
+    { min: 1, max: 12, message: '昵称长度应为 1 到 12 个字符', trigger: 'blur' }
+  ],
+  email: [{ type: 'email', message: '邮箱地址不正确', trigger: ['blur', 'change'] }]
+};
+
+// 注册逻辑
+const onRegister = async () => {
+  await formRef.value?.validate(async valid => {
+    if (!valid) return;
+
+    try {
+      // 先上传头像（如果选择了）
+      if (avatarFile.value) {
+        const uploadToken = await axiosUtil.get('/api/common/oss/upload-token', {
+          params: { type: 'avatar' },
+          headers: { noAuth: true },
+          timeout: 20000
+        });
+
+        console.log('data', uploadToken.data);
+
+        // const { host, dir, policy, accessKeyId, signature, expire } = uploadToken.data;
+        const uploadData = uploadToken.data.data;
+        const filename = `${Date.now()}_${avatarFile.value.name}`;
+        const key = `${uploadData.dir}${filename}`;
+        console.log('uploadToken', uploadToken.data);
+        console.log('filename', filename);
+        console.log('key', key);
+        console.log('host', uploadData.host);
+
+        const formData = new FormData();
+        formData.append('key', key);
+        formData.append('policy', uploadData.policy);
+        formData.append('OSSAccessKeyId', uploadData.accessKeyId);
+        formData.append('signature', uploadData.signature);
+        formData.append('success_action_status', '200');
+        formData.append('file', avatarFile.value);
+
+        await axios.post(uploadData.host, formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+            'Access-Control-Allow-Origin': '*'
+          }
+        });
+        form.avatar = `${uploadData.host}/${key}`;
+      }
+
+      // 发起注册请求
+      const payload = {
+        username: form.username,
+        password: form.password,
+        nickname: form.nickname,
+        sex: form.sex,
+        email: form.email || null,
+        phoneNumber: form.phoneNumber || null,
+        profilePictureUrl: form.avatar || null
+      };
+
+      const res = await axiosUtil.post('/api/auth/register', payload, {
+        headers: { noAuth: true }
+      });
+
+      if (res.data.code === 200) {
+        ElMessage.success('注册成功，正在跳转到登录页...');
+        setTimeout(() => router.push('/login'), 2000);
+      } else {
+        ElMessage.error(res.data.message || '注册失败');
+      }
+    } catch (err) {
+      console.error('获取 OSS 上传 token 出错：', err);
+      ElMessage.error('注册请求出错');
+    }
+  });
+};
+</script>
+
+<style scoped>
+.register-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(to right, #e0f7fa, #ffffff);
+}
+.register-card {
+  width: 400px;
+  padding: 32px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+.register-title {
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+.register-subtitle {
+  text-align: center;
+  color: #888;
+  margin-bottom: 24px;
+}
+.avatar-uploader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 96px;
+  height: 96px;
+  border: 1px dashed #ccc;
+  border-radius: 50%;
+  cursor: pointer;
+  overflow: hidden;
+  margin: 0 auto; /* 使头像框居中 */
+}
+.avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+</style>
