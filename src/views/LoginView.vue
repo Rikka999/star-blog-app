@@ -9,7 +9,12 @@
           <el-input v-model="form.username" placeholder="请输入用户名" />
         </el-form-item>
         <el-form-item label="密码" prop="password">
-          <el-input v-model="form.password" type="password" show-password placeholder="请输入密码" />
+          <el-input
+            v-model="form.password"
+            type="password"
+            show-password
+            placeholder="请输入密码"
+          />
         </el-form-item>
         <el-form-item>
           <el-button type="primary" class="login-button" @click="onSubmit">登录</el-button>
@@ -20,55 +25,75 @@
 </template>
 
 <script lang="ts" setup>
-import { reactive, ref } from 'vue'
-import type { FormInstance, FormRules } from 'element-plus'
-import axios from 'axios'
+import { reactive, ref } from 'vue';
+import { ElMessage } from 'element-plus';
+import type { FormInstance, FormRules } from 'element-plus';
+import axiosUtil from '@/utils/axios';
+import { useRouter } from 'vue-router';
 
-
-
+const router = useRouter();
 const form = reactive({
   username: '',
-  password: '',
-})
+  password: ''
+});
 
-const formRef = ref<FormInstance>()
+const formRef = ref<FormInstance>();
 
 const rules: FormRules = {
   username: [
     { required: true, message: '请输入用户名', trigger: 'blur' },
-    { min: 6, max: 12, message: '用户名长度应为 6 到 12 个字符', trigger: 'blur' }
+    {
+      min: 6,
+      max: 12,
+      message: '用户名长度应为 6 到 12 个字符',
+      trigger: 'blur'
+    }
   ],
   password: [
     { required: true, message: '请输入密码', trigger: 'blur' },
-    { min: 6, max: 12, message: '密码长度应为 6 到 12 个字符', trigger: 'blur' }
+    {
+      min: 6,
+      max: 12,
+      message: '密码长度应为 6 到 12 个字符',
+      trigger: 'blur'
+    }
   ]
-}
+};
 
 const onSubmit = async () => {
-  if (!formRef.value) return
+  if (!formRef.value) return;
   try {
-    await formRef.value.validate()
-    console.log('✅ 表单校验通过，准备提交：', form)
-     // 调用登录接口
-     const response = await axios.post('http://localhost:8080/api/auth/login', {
+    await formRef.value.validate();
+    const payload = {
       username: form.username,
       password: form.password
-    })
+    };
 
-    // 处理接口返回
+    const config = {
+      headers: {
+        noAuth: true
+      }
+    };
+    const response = await axiosUtil.post('/api/auth/login', payload, config);
+
     if (response.data.code === 200 && response.data.message === 'success') {
-      console.log('🎉 登录成功！', response.data)
-      // TODO: 登录成功后跳转到首页
-      // 例如：this.$router.push('/home')
+      localStorage.setItem('token', response.data.data.token);
+      ElMessage({
+        message: '登陆成功，正在跳转到主页...',
+        type: 'success',
+        duration: 1000
+      });
+      setTimeout(function () {
+        router.push('/');
+      }, 1000);
     } else {
-      console.warn('❌ 登录失败：', response.data)
+      console.warn('❌ 登录失败：', response.data);
       // 提示登录失败信息
     }
   } catch (err) {
-    console.warn('❌ 表单校验失败')
-    console.log('错误详情：', err)
-}
-}
+    console.warn('❌ 表单校验失败');
+  }
+};
 </script>
 
 <style scoped>
