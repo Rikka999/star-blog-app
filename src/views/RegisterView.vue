@@ -5,18 +5,17 @@
       <p class="register-subtitle"></p>
 
       <el-form :model="form" :rules="rules" ref="formRef" label-width="80px">
-        <!-- 上传头像（去掉label，调整居中） -->
+        <!-- 上传头像 -->
         <el-form-item>
           <el-upload
-            class="avatar-uploader"
+            class="profilePicture-uploader"
             :show-file-list="false"
             :auto-upload="false"
             accept="image/*"
-            @change="handleAvatarSelect"
+            @change="handleprofilePictureSelect"
           >
-            <!-- 确保头像URL正确显示 -->
-            <img v-if="avatarUrl" :src="avatarUrl" class="avatar" />
-            <el-icon v-else><Plus /></el-icon>
+            <img v-if="profilePictureUrl" :src="profilePictureUrl" class="profilePicture" />
+            <el-icon v-else class="avatar-uploader-icon"><Plus /></el-icon>
           </el-upload>
         </el-form-item>
 
@@ -79,12 +78,14 @@ import { ElMessage } from 'element-plus';
 import type { UploadFile } from 'element-plus';
 import { Plus } from '@element-plus/icons-vue';
 import axiosUtil from '@/utils/axios';
-import axios from 'axios';
 import type { FormInstance, FormRules } from 'element-plus';
 import { useRouter } from 'vue-router';
+import { OssUploader } from '@/utils/ossUploader';
 
 const router = useRouter();
 const formRef = ref<FormInstance>();
+const DEFAULT_AVATAR =
+  'https://star-blog-assets.oss-cn-shenzhen.aliyuncs.com/profile_picture/default_profile_picture.jpg';
 
 const form = reactive({
   username: '',
@@ -94,26 +95,23 @@ const form = reactive({
   sex: '4',
   email: '',
   phoneNumber: '',
-  avatar: '' // 最终传给后端的头像地址
+  profilePicture: ''
 });
 
-// 新增：头像相关
-const avatarFile = ref<File | null>(null);
-const avatarUrl = ref<string>('');
+const profilePictureFile = ref<File | null>(null);
+const profilePictureUrl = ref<string>('');
 
 // 处理头像选择
-const handleAvatarSelect = (uploadFile: UploadFile) => {
+const handleprofilePictureSelect = (uploadFile: UploadFile) => {
   const file = uploadFile?.raw;
   if (file) {
-    avatarFile.value = file;
-    avatarUrl.value = URL.createObjectURL(file);
+    profilePictureFile.value = file;
+    profilePictureUrl.value = URL.createObjectURL(file);
   }
-  console.log(file);
-  console.log(avatarUrl.value);
   return false;
 };
 
-// 注册规则
+// 表单规则
 const rules: FormRules = {
   username: [
     { required: true, message: '请输入用户名', trigger: 'blur' },
@@ -143,48 +141,16 @@ const rules: FormRules = {
   email: [{ type: 'email', message: '邮箱地址不正确', trigger: ['blur', 'change'] }]
 };
 
-// 注册逻辑
+// 注册
 const onRegister = async () => {
   await formRef.value?.validate(async valid => {
     if (!valid) return;
 
     try {
-      // 先上传头像（如果选择了）
-      if (avatarFile.value) {
-        const uploadToken = await axiosUtil.get('/api/common/oss/upload-token', {
-          params: { type: 'avatar' },
-          headers: { noAuth: true },
-          timeout: 20000
-        });
-
-        console.log('data', uploadToken.data);
-
-        // const { host, dir, policy, accessKeyId, signature, expire } = uploadToken.data;
-        const uploadData = uploadToken.data.data;
-        const filename = `${Date.now()}_${avatarFile.value.name}`;
-        const key = `${uploadData.dir}${filename}`;
-        console.log('uploadToken', uploadToken.data);
-        console.log('filename', filename);
-        console.log('key', key);
-        console.log('host', uploadData.host);
-
-        const formData = new FormData();
-        formData.append('key', key);
-        formData.append('policy', uploadData.policy);
-        formData.append('OSSAccessKeyId', uploadData.accessKeyId);
-        formData.append('signature', uploadData.signature);
-        formData.append('success_action_status', '200');
-        formData.append('file', avatarFile.value);
-
-        await axios.post(uploadData.host, formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-            'Access-Control-Allow-Origin': '*'
-          }
-        });
-        form.avatar = `${uploadData.host}/${key}`;
-      }
-
+      // 先上传头像，没有就使用默认
+      form.profilePicture = profilePictureFile.value
+        ? await OssUploader.upload(profilePictureFile.value, 'profilePicture')
+        : DEFAULT_AVATAR;
       // 发起注册请求
       const payload = {
         username: form.username,
@@ -193,9 +159,9 @@ const onRegister = async () => {
         sex: form.sex,
         email: form.email || null,
         phoneNumber: form.phoneNumber || null,
-        profilePictureUrl: form.avatar || null
+        profilePictureUrl: form.profilePicture || null
       };
-
+      console.log(payload);
       const res = await axiosUtil.post('/api/auth/register', payload, {
         headers: { noAuth: true }
       });
@@ -239,7 +205,7 @@ const onRegister = async () => {
   color: #888;
   margin-bottom: 24px;
 }
-.avatar-uploader {
+.profilePicture-uploader {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -249,11 +215,18 @@ const onRegister = async () => {
   border-radius: 50%;
   cursor: pointer;
   overflow: hidden;
-  margin: 0 auto; /* 使头像框居中 */
+  margin: 0 auto;
 }
-.avatar {
+.profilePicture {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+.el-icon.avatar-uploader-icon {
+  font-size: 28px;
+  color: #8c939d;
+  width: 178px;
+  height: 178px;
+  text-align: center;
 }
 </style>

@@ -30,6 +30,7 @@ import { ElMessage } from 'element-plus';
 import type { FormInstance, FormRules } from 'element-plus';
 import axiosUtil from '@/utils/axios';
 import { useRouter } from 'vue-router';
+import { useUserStore } from '@/stores/user';
 
 const router = useRouter();
 const form = reactive({
@@ -77,7 +78,8 @@ const onSubmit = async () => {
     const response = await axiosUtil.post('/api/auth/login', payload, config);
 
     if (response.data.code === 200 && response.data.message === 'success') {
-      localStorage.setItem('token', response.data.data.token);
+      const userInfo = useUserStore();
+      userInfo.setUser(response.data.data);
       ElMessage({
         message: '登陆成功，正在跳转到主页...',
         type: 'success',
@@ -87,11 +89,16 @@ const onSubmit = async () => {
         router.push('/');
       }, 1000);
     } else {
-      console.warn('❌ 登录失败：', response.data);
-      // 提示登录失败信息
+      ElMessage({
+        message: '❌ 登录失败：' + response.data,
+        duration: 1000
+      });
     }
   } catch (err) {
-    console.warn('❌ 表单校验失败');
+    ElMessage({
+      message: '❌ 表单校验失败' + err,
+      duration: 1000
+    });
   }
 };
 </script>
