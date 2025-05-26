@@ -9,7 +9,8 @@
 
       <el-form-item label="封面图" prop="coverImage">
         <el-upload
-          class="w-full h-48 object-cover rounded"
+          fit="contain"
+          class="max-h-[400px] w-full object-contain rounded-lg shadow-lg"
           :show-file-list="false"
           :auto-upload="false"
           accept="image/*"
@@ -64,6 +65,24 @@ import type { UploadFile, FormInstance, FormRules } from 'element-plus';
 import { QuillEditor } from '@vueup/vue-quill';
 import '@vueup/vue-quill/dist/vue-quill.snow.css';
 import { OssUploader } from '@/utils/ossUploader';
+import { watchEffect } from 'vue';
+
+watchEffect(onCleanup => {
+  const editorContainer = document.querySelector('.ql-container .ql-editor');
+  if (!editorContainer) return;
+
+  const observer = new MutationObserver(mutations => {
+    // 处理编辑器内容变动
+  });
+
+  observer.observe(editorContainer, {
+    childList: true,
+    subtree: true,
+    characterData: true
+  });
+
+  onCleanup(() => observer.disconnect());
+});
 
 const CoverFile = ref<File | null>(null);
 const CoverUrl = ref<string>('');

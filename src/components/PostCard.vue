@@ -1,6 +1,7 @@
 <template>
   <div
     class="rounded-2xl shadow-md border border-gray-200 overflow-hidden hover:shadow-lg transition"
+    @click="navigateToDetail"
   >
     <div class="flex items-center gap-2 mb-2">
       <img :src="post.user.profilePictureUrl" alt="头像" class="w-6 h-6 rounded-full" />
@@ -27,5 +28,14 @@
 
 <script setup lang="ts">
 import type { Post } from '@/types/post';
-defineProps<{ post: Post }>();
+import { useRouter } from 'vue-router';
+
+const props = defineProps<{ post: Post }>();
+const router = useRouter();
+const navigateToDetail = () => {
+  router.push({
+    name: 'PostDetail',
+    params: { id: props.post.id }
+  });
+};
 </script>

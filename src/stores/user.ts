@@ -26,6 +26,22 @@ export const useUserStore = defineStore('user', () => {
     localStorage.setItem('roles', data.roles);
   };
 
+  const clearUser = () => {
+    token.value = null;
+    id.value = null;
+    username.value = null;
+    nickname.value = null;
+    profilePictureUrl.value = null;
+    roles.value = null;
+
+    localStorage.setItem('token', '');
+    localStorage.setItem('id', '');
+    localStorage.setItem('username', '');
+    localStorage.setItem('nickname', '');
+    localStorage.setItem('profilePictureUrl', '');
+    localStorage.setItem('roles', '');
+  };
+
   return {
     token,
     id,
@@ -33,6 +49,7 @@ export const useUserStore = defineStore('user', () => {
     nickname,
     profilePictureUrl,
     roles,
-    setUser
+    setUser,
+    clearUser
   };
 });

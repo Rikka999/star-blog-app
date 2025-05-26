@@ -3,8 +3,8 @@
     <el-menu-item index="1"><RouterLink to="/">主页</RouterLink></el-menu-item>
     <el-menu-item index="2"><RouterLink to="/login">登陆</RouterLink></el-menu-item>
     <el-menu-item index="3"><RouterLink to="/register">注册</RouterLink></el-menu-item>
-    <el-menu-item index="4"><RouterLink to="/tarot">塔罗</RouterLink></el-menu-item>
-    <el-menu-item index="5"><RouterLink to="/post/create">文章</RouterLink></el-menu-item>
+    <el-menu-item index="4"><RouterLink to="/post/create">文章</RouterLink></el-menu-item>
+    <el-menu-item index="5"><RouterLink to="/tarot">塔罗</RouterLink></el-menu-item>
   </el-menu>
   <main>
     <RouterView />
