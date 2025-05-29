@@ -63,7 +63,7 @@
 
         <!-- 操作按钮 -->
         <div class="action-buttons mt-8 flex gap-4">
-          <el-button type="primary" v-if="isAuthor" @click="$router.push(`/edit-post/${postId}`)">
+          <el-button type="primary" v-if="isAuthor" @click="$router.push(`/post/${postId}/edit`)">
             编辑文章
           </el-button>
           <el-button type="danger" v-if="isAuthor" @click="handleDelete"> 删除文章 </el-button>
@@ -136,6 +136,7 @@ const fetchPost = async () => {
     error.value = false;
     const { data } = await axiosUtil.get(`/api/posts/${postId}`);
     post.value = data.data;
+    document.title = '星星树洞⭐' + post.value.title || '星星树洞⭐详情';
   } catch (err) {
     error.value = true;
     ElMessage.error('获取文章详情失败');

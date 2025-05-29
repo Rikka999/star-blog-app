@@ -1,44 +1,43 @@
 import { createWebHistory, createRouter } from 'vue-router';
 
-import HomeView from '@/views/HomeView.vue';
-import LoginView from '@/views/LoginView.vue';
-import RegisterView from '@/views/RegisterView.vue';
-import TarotView from '@/views/tarot/TarotView.vue';
-import PostCreateView from '@/views/PostCreateView.vue';
-import PostDetailView from '@/views/PostDetailView.vue';
-
-// 定义路由规则
 const routes = [
   {
     path: '/',
-    component: HomeView,
-    meta: { title: '首页' }
+    component: () => import('@/views/HomeView.vue'),
+    meta: { title: '星星树洞⭐首页' }
   },
   {
     path: '/login',
-    component: LoginView,
-    meta: { title: '登录', guestOnly: true }
+    component: () => import('@/views/LoginView.vue'),
+    meta: { title: '星星树洞⭐登录', guestOnly: true }
   },
   {
     path: '/register',
-    component: RegisterView,
-    meta: { title: '注册', guestOnly: true }
+    component: () => import('@/views/RegisterView.vue'),
+    meta: { title: '星星树洞⭐注册', guestOnly: true }
   },
   {
     path: '/tarot',
-    component: TarotView,
-    meta: { title: '塔罗', requiresAuth: true }
+    component: () => import('@/views/tarot/TarotView.vue'),
+    meta: { title: '星星树洞⭐塔罗', requiresAuth: true }
   },
   {
     path: '/post/create',
-    component: PostCreateView,
-    meta: { title: '发表', requiresAuth: true }
+    component: () => import('@/views/PostCreateView.vue'),
+    meta: { title: '星星树洞⭐发布', requiresAuth: true }
   },
   {
     path: '/post/:id',
     name: 'PostDetail',
-    component: PostDetailView,
-    meta: { title: '详情' },
+    component: () => import('@/views/PostDetailView.vue'),
+    meta: { title: '星星树洞⭐详情' },
+    props: true
+  },
+  {
+    path: '/post/:id/edit',
+    name: 'PostEdit',
+    component: () => import('@/views/PostEditView.vue'),
+    meta: { title: '星星树洞⭐编辑', requiresAuth: true },
     props: true
   }
 ];
