@@ -10,6 +10,7 @@
     <div class="absolute left-1/2 transform -translate-x-1/2 flex items-center space-x-2">
       <el-input
         v-model="searchKeyword"
+        @keyup.enter="enterSearch"
         class="w-64 max-w-full px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-300"
         placeholder="搜索"
       />
@@ -61,6 +62,10 @@ const profilePictureUrl = computed(() => userInfo.profilePictureUrl || '');
 
 const isLogged = computed(() => !!userInfo.token);
 const searchKeyword = ref('');
+
+function enterSearch() {
+  searchPosts();
+}
 
 function searchPosts() {
   router.push({ path: '/search', query: { q: searchKeyword.value } });
