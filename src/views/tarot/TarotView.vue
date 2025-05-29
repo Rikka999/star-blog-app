@@ -31,7 +31,7 @@
     </div>
 
     <!-- 卡牌展示区域 -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div class="grid gap-6 w-full max-w-screen-xl grid-cols-[repeat(auto-fit,minmax(220px,1fr))]">
       <div v-for="(item, index) in drawnCardsResult" :key="index" class="flex justify-center">
         <el-card class="card-container" :body-style="{ padding: '20px' }" shadow="hover">
           <h3 class="text-xl font-semibold text-center">{{ item.card.name }}</h3>
