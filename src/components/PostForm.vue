@@ -37,14 +37,14 @@
         />
       </el-form-item>
 
-      <el-form-item label="是否允许评论" prop="allowComment">
+      <el-form-item label="是否允许评论" prop="allowComment" v-if="false">
         <el-radio-group v-model="form.allowComment">
           <el-radio :value="true">允许</el-radio>
           <el-radio :value="false">不允许</el-radio>
         </el-radio-group>
       </el-form-item>
 
-      <el-form-item label="可见性" prop="visibility">
+      <el-form-item label="可见性" prop="visibility" v-if="false">
         <el-radio-group v-model="form.visibility">
           <el-radio :value="0">公开</el-radio>
           <el-radio :value="1">私密</el-radio>
