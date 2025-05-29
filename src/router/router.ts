@@ -39,6 +39,11 @@ const routes = [
     component: () => import('@/views/PostEditView.vue'),
     meta: { title: '星星树洞⭐编辑', requiresAuth: true },
     props: true
+  },
+  {
+    path: '/search',
+    component: () => import('@/views/SearchView.vue'),
+    meta: { title: '星星树洞⭐搜索' }
   }
 ];
 

@@ -2,7 +2,7 @@
   <div class="login-container">
     <el-card class="login-card">
       <h2 class="login-title">🌟 星星树洞</h2>
-      <p class="login-subtitle">你有什么想说的呢？</p>
+      <p class="login-subtitle">来发表你的想法吧！</p>
 
       <el-form :model="form" :rules="rules" ref="formRef" label-width="80px">
         <el-form-item label="用户名" prop="username">
@@ -16,9 +16,10 @@
             placeholder="请输入密码"
           />
         </el-form-item>
-        <el-form-item>
+        <div style="width: auto center; display: flex; justify-content: center">
           <el-button type="primary" class="login-button" @click="onSubmit">登录</el-button>
-        </el-form-item>
+          <el-button type="success" class="register-button" @click="goToRegister">去注册</el-button>
+        </div>
       </el-form>
     </el-card>
   </div>
@@ -101,6 +102,10 @@ const onSubmit = async () => {
     });
   }
 };
+
+function goToRegister() {
+  router.push('/register');
+}
 </script>
 
 <style scoped>
@@ -133,6 +138,10 @@ const onSubmit = async () => {
 }
 
 .login-button {
-  width: 100%;
+  width: 45%;
+}
+
+.register-button {
+  width: 45%;
 }
 </style>
