@@ -4,7 +4,7 @@ const routes = [
   {
     path: '/',
     component: () => import('@/views/HomeView.vue'),
-    meta: { title: '星星树洞⭐首页' }
+    meta: { title: '星星树洞⭐首页', requiresAuth: true }
   },
   {
     path: '/login',
@@ -30,7 +30,7 @@ const routes = [
     path: '/post/:id',
     name: 'PostDetail',
     component: () => import('@/views/PostDetailView.vue'),
-    meta: { title: '星星树洞⭐详情' },
+    meta: { title: '星星树洞⭐详情', requiresAuth: true },
     props: true
   },
   {
@@ -43,7 +43,12 @@ const routes = [
   {
     path: '/search',
     component: () => import('@/views/SearchView.vue'),
-    meta: { title: '星星树洞⭐搜索' }
+    meta: { title: '星星树洞⭐搜索', requiresAuth: true }
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'NotFound',
+    component: () => import('@/views/NotFound.vue')
   }
 ];
 

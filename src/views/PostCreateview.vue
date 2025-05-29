@@ -12,7 +12,7 @@ const router = useRouter();
 
 const handleCreate = async (formData: any) => {
   await axiosUtil.post('/api/posts', formData);
-  ElMessage.success('发布成功');
+  ElMessage.success({ message: '发布成功', duration: 2000 });
   router.push('/');
 };
 </script>

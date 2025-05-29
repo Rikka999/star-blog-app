@@ -139,7 +139,7 @@ const fetchPost = async () => {
     document.title = '星星树洞⭐' + post.value.title || '星星树洞⭐详情';
   } catch (err) {
     error.value = true;
-    ElMessage.error('获取文章详情失败');
+    ElMessage.error({ message: '获取文章详情失败', duration: 2000 });
   } finally {
     loading.value = false;
   }
@@ -155,7 +155,7 @@ const handleDelete = async () => {
     });
 
     await axiosUtil.delete(`/api/posts/${postId}`);
-    ElMessage.success('删除成功');
+    ElMessage.success({ message: '删除成功', duration: 2000 });
     router.push('/');
   } catch (err) {
     // 用户取消删除时不处理

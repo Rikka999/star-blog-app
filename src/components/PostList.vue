@@ -1,8 +1,10 @@
 <template>
   <div class="p-4">
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+    <div v-if="posts.length > 0" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
       <PostCard v-for="post in posts" :key="post.id" :post="post" />
     </div>
+    <div v-else class="text-center text-gray-500 py-10 text-lg">什么都没有</div>
+
     <div v-if="totalElements > pageSize" class="mt-6 flex justify-center">
       <el-pagination
         background

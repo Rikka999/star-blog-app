@@ -22,7 +22,7 @@ onMounted(async () => {
 
 const handleUpdate = async (formData: any) => {
   await axiosUtil.put(`/api/posts/${postId}`, formData);
-  ElMessage.success('修改成功');
+  ElMessage.success({ message: '修改成功', duration: 2000 });
   router.push(`/post/${postId}`);
 };
 </script>
