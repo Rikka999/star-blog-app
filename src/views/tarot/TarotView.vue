@@ -67,9 +67,11 @@ const drawCount = ref(3);
 const drawnCardBackIndexes = ref<number[]>([]); // 存储已抽卡背的索引
 const drawnCardsResult = ref<Array<{ card: any; orientation: string }>>([]);
 
-// 清理方法
+// 洗牌
 function cleanDrawResult() {
   drawnCardsResult.value = [];
+  drawnCardBackIndexes.value = [];
+  tarot.drawnCards = [];
   tarot.initDeck();
 }
 
