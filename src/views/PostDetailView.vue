@@ -1,5 +1,5 @@
 <template>
-  <div class="post-detail-container p-6 max-w-4xl mx-auto">
+  <div class="post-detail-container p-6 max-w-4xl mx-auto space-y-12">
     <!-- 加载状态 -->
     <el-skeleton :loading="loading" animated>
       <template #template>
@@ -11,7 +11,6 @@
         </div>
       </template>
 
-      <!-- 正常内容 -->
       <template #default>
         <!-- 返回按钮 -->
         <el-button type="primary" link class="mb-4" @click="$router.go(-1)">
@@ -22,28 +21,25 @@
         <!-- 文章标题 -->
         <h1 class="text-3xl font-bold mb-6">{{ post.title }}</h1>
 
-        <!-- 元信息 -->
-        <div class="meta-info flex items-center text-gray-500 text-sm mb-6">
+        <!-- 信息 -->
+        <div class="meta-info flex items-center text-gray-500 text-sm mb-6 flex-wrap gap-2">
           <span class="mr-4">
             <i class="el-icon-user"></i>
             {{ post.user?.nickname || '匿名用户' }}
           </span>
           <span class="mr-4">
             <i class="el-icon-time"></i>
-            发布于:
-            {{ formatDate(post.createdTime) }}
+            发布于: {{ formatDate(post.createdTime) }}
           </span>
           <span class="mr-4">
             <i class="el-icon-time"></i>
-            修改于:
-            {{ formatDate(post.updatedTime) }}
+            修改于: {{ formatDate(post.updatedTime) }}
           </span>
           <span>
             <i class="el-icon-view"></i>
-            浏览量:
-            {{ post.viewCount || 0 }}
+            浏览量: {{ post.viewCount || 0 }}
           </span>
-          <!-- 操作按钮 -->
+
           <el-button
             v-if="isAuthor"
             type="primary"
@@ -51,11 +47,11 @@
             class="mr-4"
             @click="$router.push(`/post/${postId}/edit`)"
           >
-            <i class="el-icon-back"></i>
+            <i class="el-icon-edit"></i>
             编辑文章
           </el-button>
           <el-button v-if="isAuthor" type="primary" link class="mr-4" @click="handleDelete">
-            <i class="el-icon-back"></i>
+            <i class="el-icon-delete"></i>
             删除文章
           </el-button>
         </div>
@@ -75,6 +71,12 @@
         <div class="content-wrapper border-t pt-6 relative overflow-hidden">
           <div class="quill-content" v-html="post.content"></div>
         </div>
+
+        <!-- 分割线 -->
+        <hr class="my-6 border-t border-gray-200" />
+
+        <!-- 评论组件 -->
+        <CommentSection :postId="postId" />
       </template>
     </el-skeleton>
 
@@ -92,6 +94,7 @@ import { ref, computed, onMounted } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { ElMessage, ElMessageBox } from 'element-plus';
 import axiosUtil from '@/utils/axios';
+import CommentSection from '@/components/CommentSection.vue';
 
 interface Post {
   id: string;
@@ -118,25 +121,15 @@ const loading = ref(true);
 const error = ref(false);
 const post = ref<Post>({} as Post);
 
-// 获取当前登录用户ID
+// 当前登录用户 ID
 const currentUserId = localStorage.getItem('id');
+const isAuthor = computed(() => post.value.user?.id === Number(currentUserId));
 
-// 判断当前用户是否是作者
-const isAuthor = computed(() => {
-  return post.value.user?.id === Number(currentUserId);
-});
-
-// 日期格式化
 const formatDate = (dateString: string) => {
-  const options: Intl.DateTimeFormatOptions = {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
-  };
+  const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' };
   return new Date(dateString).toLocaleDateString('zh-CN', options);
 };
 
-// 获取文章详情
 const fetchPost = async () => {
   try {
     loading.value = true;
@@ -152,7 +145,6 @@ const fetchPost = async () => {
   }
 };
 
-// 删除文章
 const handleDelete = async () => {
   try {
     await ElMessageBox.confirm('确定要删除这篇文章吗？', '警告', {
@@ -165,40 +157,47 @@ const handleDelete = async () => {
     ElMessage.success({ message: '删除成功', duration: 2000 });
     router.push('/');
   } catch (err) {
-    // 用户取消删除时不处理
+    // 取消不做处理
   }
 };
 
-// 初始化加载
 onMounted(() => {
   fetchPost();
 });
 </script>
 
 <style scoped>
-.post-detail-container {
-  min-height: calc(100vh - 128px);
-}
-
 .quill-content {
-  @apply prose max-w-none;
+  max-width: none;
 }
 
+/* 图片样式 */
 .quill-content :deep(img) {
-  @apply block max-w-full h-auto max-h-[500px] my-4 mx-auto rounded-lg shadow-md;
+  display: block;
+  max-width: 100%;
+  height: auto;
+  max-height: 500px;
+  margin: 1rem auto;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   object-fit: contain;
-  width: auto !important;
-  height: auto !important;
-  max-width: 100% !important;
-  max-height: 500px !important;
 }
 
+/* 代码块 */
 .quill-content :deep(pre) {
-  @apply p-4 bg-gray-800 text-gray-100 rounded-lg overflow-x-auto;
+  padding: 1rem;
+  background-color: #1f2937;
+  color: #f3f4f6;
+  border-radius: 0.5rem;
+  overflow-x: auto;
 }
 
+/* 引用块 */
 .quill-content :deep(blockquote) {
-  @apply border-l-4 border-gray-300 pl-4 text-gray-600 italic;
+  border-left: 4px solid #d1d5db;
+  padding-left: 1rem;
+  color: #4b5563;
+  font-style: italic;
 }
 
 .image-error {
