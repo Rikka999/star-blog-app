@@ -1,7 +1,7 @@
 <template>
   <div class="comment-section-container max-w-4xl mx-auto mt-16 px-4 border-t pt-6">
     <!-- 添加评论 -->
-    <div class="mb-8">
+    <div class="mb-8" ref="commentBoxRef">
       <div v-if="replyToCommentId !== null" class="mb-2 text-sm text-gray-500">
         正在回复评论 # {{ replyToCommentNickname }}:{{ truncatedReplyContent }}
         <el-button size="small" type="warning" text @click="cancelReply">取消回复</el-button>
@@ -9,6 +9,7 @@
 
       <el-input
         v-model="newComment"
+        ref="commentInputRef"
         type="textarea"
         :rows="4"
         placeholder="说点什么吧..."
@@ -86,7 +87,7 @@
         background
         layout="prev, pager, next"
         :current-page="page"
-        :page-size="size"
+        :page-size="pageSize"
         :total="total"
         @current-change="handlePageChange"
       />
@@ -101,6 +102,7 @@ import { ref, onMounted, computed, reactive } from 'vue';
 import { ElMessage } from 'element-plus';
 import axiosUtil from '@/utils/axios';
 import { userStore } from '@/stores/user';
+import { nextTick } from 'vue';
 
 interface Comment {
   id: number;
@@ -117,11 +119,11 @@ interface Comment {
 
 const userInfo = userStore();
 const props = defineProps<{ postId: string | number }>();
-
 const comments = ref<Comment[]>([]);
 const total = ref(0);
 const page = ref(1);
-const size = ref(10);
+const pageSize = ref(5);
+const commentInputRef = ref();
 
 const newComment = ref('');
 const submitting = ref(false);
@@ -176,7 +178,7 @@ const fetchComments = async () => {
     const { data } = await axiosUtil.get(`/api/posts/${props.postId}/comments`, {
       params: {
         page: page.value - 1,
-        pageSize: size.value
+        pageSize: pageSize.value
       }
     });
 
@@ -232,6 +234,10 @@ const replyTo = (
   replyToCommentNickname.value = nickname;
   replyToCommentProfilePictureUrl.value = profilePictureUrl;
   replyToCommentContent.value = content;
+
+  nextTick(() => {
+    commentInputRef.value?.focus?.();
+  });
 };
 
 const cancelReply = () => {
