@@ -1,5 +1,9 @@
 <template>
   <div class="p-6 max-w-4xl mx-auto">
+    <el-button type="primary" link class="mb-4" @click="$router.go(-1)">
+      <i class="el-icon-back"></i>
+      ← 返回
+    </el-button>
     <h1 class="text-2xl font-bold mb-4">{{ isEdit ? '编辑' : '发布' }}</h1>
 
     <el-form :model="form" :rules="rules" ref="formRef" label-position="top" class="space-y-4">

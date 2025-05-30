@@ -16,7 +16,7 @@
         <!-- 返回按钮 -->
         <el-button type="primary" link class="mb-4" @click="$router.go(-1)">
           <i class="el-icon-back"></i>
-          返回列表
+          ← 返回
         </el-button>
 
         <!-- 文章标题 -->
@@ -43,6 +43,21 @@
             浏览量:
             {{ post.viewCount || 0 }}
           </span>
+          <!-- 操作按钮 -->
+          <el-button
+            v-if="isAuthor"
+            type="primary"
+            link
+            class="mr-4"
+            @click="$router.push(`/post/${postId}/edit`)"
+          >
+            <i class="el-icon-back"></i>
+            编辑文章
+          </el-button>
+          <el-button v-if="isAuthor" type="primary" link class="mr-4" @click="handleDelete">
+            <i class="el-icon-back"></i>
+            删除文章
+          </el-button>
         </div>
 
         <!-- 封面图 -->
@@ -59,14 +74,6 @@
         <!-- 正文内容 -->
         <div class="content-wrapper border-t pt-6 relative overflow-hidden">
           <div class="quill-content" v-html="post.content"></div>
-        </div>
-
-        <!-- 操作按钮 -->
-        <div class="action-buttons mt-8 flex gap-4">
-          <el-button type="primary" v-if="isAuthor" @click="$router.push(`/post/${postId}/edit`)">
-            编辑文章
-          </el-button>
-          <el-button type="danger" v-if="isAuthor" @click="handleDelete"> 删除文章 </el-button>
         </div>
       </template>
     </el-skeleton>

@@ -161,7 +161,6 @@ const onRegister = async () => {
         phoneNumber: form.phoneNumber || null,
         profilePictureUrl: form.profilePicture || null
       };
-      console.log(payload);
       const res = await axiosUtil.post('/api/auth/register', payload, {
         headers: { noAuth: true }
       });

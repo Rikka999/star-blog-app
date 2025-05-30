@@ -87,7 +87,6 @@ function clickCardBack(index: number) {
   if (drawnCardBackIndexes.value.includes(index)) return;
   drawnCardBackIndexes.value.push(index);
   drawCard();
-  console.log(tarot.drawnCards);
 }
 
 function getMeanings(item: { card: any; orientation: string }) {
