@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { ElMessage } from 'element-plus';
-import { useUserStore } from '@/stores/user';
+import { userStore } from '@/stores/user';
 import { router } from '@/router/router';
 
 const instance = axios.create({
@@ -8,7 +8,7 @@ const instance = axios.create({
   timeout: 5000
 });
 
-const userInfo = useUserStore();
+const userInfo = userStore();
 
 // 请求拦截器，添加 token
 instance.interceptors.request.use(

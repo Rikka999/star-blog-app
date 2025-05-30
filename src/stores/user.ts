@@ -2,7 +2,7 @@
 import { defineStore } from 'pinia';
 import { ref } from 'vue';
 
-export const useUserStore = defineStore('user', () => {
+export const userStore = defineStore('user', () => {
   const token = ref(localStorage.getItem('token'));
   const id = ref(localStorage.getItem('id'));
   const username = ref(localStorage.getItem('username'));

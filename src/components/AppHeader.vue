@@ -52,11 +52,11 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue';
 import { useRouter } from 'vue-router';
-import { useUserStore } from '@/stores/user';
+import { userStore } from '@/stores/user';
 import { Search } from '@element-plus/icons-vue';
 
 const router = useRouter();
-const userInfo = useUserStore();
+const userInfo = userStore();
 
 const profilePictureUrl = computed(() => userInfo.profilePictureUrl || '');
 

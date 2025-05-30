@@ -31,7 +31,7 @@ import { ElMessage } from 'element-plus';
 import type { FormInstance, FormRules } from 'element-plus';
 import axiosUtil from '@/utils/axios';
 import { useRouter } from 'vue-router';
-import { useUserStore } from '@/stores/user';
+import { userStore } from '@/stores/user';
 
 const router = useRouter();
 const form = reactive({
@@ -79,7 +79,7 @@ const onSubmit = async () => {
     const response = await axiosUtil.post('/api/auth/login', payload, config);
 
     if (response.data.code === 200 && response.data.message === 'success') {
-      const userInfo = useUserStore();
+      const userInfo = userStore();
       userInfo.setUser(response.data.data);
       ElMessage({
         message: '登陆成功，正在跳转到主页...',
