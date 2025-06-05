@@ -18,7 +18,7 @@
           ← 返回
         </el-button>
 
-        <!-- 文章标题 -->
+        <!-- 帖子标题 -->
         <h1 class="text-3xl font-bold mb-6">{{ post.title }}</h1>
 
         <!-- 信息 -->
@@ -48,11 +48,11 @@
             @click="$router.push(`/post/${postId}/edit`)"
           >
             <i class="el-icon-edit"></i>
-            编辑文章
+            编辑
           </el-button>
           <el-button v-if="isAuthor" type="primary" link class="mr-4" @click="handleDelete">
             <i class="el-icon-delete"></i>
-            删除文章
+            删除
           </el-button>
         </div>
 
@@ -81,7 +81,7 @@
     </el-skeleton>
 
     <!-- 错误提示 -->
-    <el-empty v-if="error" description="文章加载失败" class="mt-12">
+    <el-empty v-if="error" description="帖子加载失败" class="mt-12">
       <template #extra>
         <el-button @click="fetchPost">重试</el-button>
       </template>
@@ -139,7 +139,7 @@ const fetchPost = async () => {
     document.title = '星星树洞⭐' + post.value.title || '星星树洞⭐详情';
   } catch (err) {
     error.value = true;
-    ElMessage.error({ message: '获取文章详情失败', duration: 2000 });
+    ElMessage.error({ message: '获取帖子详情失败', duration: 2000 });
   } finally {
     loading.value = false;
   }
@@ -147,7 +147,7 @@ const fetchPost = async () => {
 
 const handleDelete = async () => {
   try {
-    await ElMessageBox.confirm('确定要删除这篇文章吗？', '警告', {
+    await ElMessageBox.confirm('确定要删除这篇帖子吗？', '警告', {
       confirmButtonText: '确定',
       cancelButtonText: '取消',
       type: 'warning'

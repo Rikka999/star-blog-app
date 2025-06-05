@@ -183,7 +183,6 @@ const fetchComments = async () => {
     });
 
     const parentComments: Comment[] = data.data.content;
-    console.log(data.data.content);
 
     for (const parent of parentComments) {
       parent.children = flattenReplies(parent);

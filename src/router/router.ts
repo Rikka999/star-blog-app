@@ -46,6 +46,22 @@ const routes = [
     meta: { title: '星星树洞⭐搜索', requiresAuth: true }
   },
   {
+    path: '/user/:id',
+    component: () => import('@/views/ProfileView.vue'),
+    meta: { title: '星星树洞⭐个人主页', requiresAuth: true }
+  },
+  {
+    path: '/user/:id/edit',
+    name: 'UserEdit',
+    component: () => import('@/views/UserEditView.vue'),
+    meta: { title: '星星树洞⭐编辑个人资料', requiresAuth: true }
+  },
+  {
+    path: '/user/:id/edit/change-password',
+    component: () => import('@/views/ChangePasswordView.vue'),
+    meta: { title: '星星树洞⭐修改密码', requiresAuth: true }
+  },
+  {
     path: '/:pathMatch(.*)*',
     name: 'NotFound',
     component: () => import('@/views/NotFound.vue')

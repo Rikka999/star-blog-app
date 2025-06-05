@@ -7,6 +7,7 @@ export const userStore = defineStore('user', () => {
   const id = ref(localStorage.getItem('id'));
   const username = ref(localStorage.getItem('username'));
   const nickname = ref(localStorage.getItem('nickname'));
+  const slogan = ref(localStorage.getItem('slogan'));
   const profilePictureUrl = ref(localStorage.getItem('profilePictureUrl'));
   const roles = ref(localStorage.getItem('roles'));
 
@@ -15,6 +16,7 @@ export const userStore = defineStore('user', () => {
     id.value = data.id;
     username.value = data.username;
     nickname.value = data.nickname;
+    slogan.value = data.slogan;
     profilePictureUrl.value = data.profilePictureUrl;
     roles.value = data.roles;
 
@@ -22,6 +24,7 @@ export const userStore = defineStore('user', () => {
     localStorage.setItem('id', data.id);
     localStorage.setItem('username', data.username);
     localStorage.setItem('nickname', data.nickname);
+    localStorage.setItem('slogan', data.slogan);
     localStorage.setItem('profilePictureUrl', data.profilePictureUrl);
     localStorage.setItem('roles', data.roles);
   };
@@ -31,6 +34,7 @@ export const userStore = defineStore('user', () => {
     id.value = null;
     username.value = null;
     nickname.value = null;
+    slogan.value = null;
     profilePictureUrl.value = null;
     roles.value = null;
 
@@ -38,6 +42,7 @@ export const userStore = defineStore('user', () => {
     localStorage.setItem('id', '');
     localStorage.setItem('username', '');
     localStorage.setItem('nickname', '');
+    localStorage.setItem('slogan', '');
     localStorage.setItem('profilePictureUrl', '');
     localStorage.setItem('roles', '');
   };
@@ -47,6 +52,7 @@ export const userStore = defineStore('user', () => {
     id,
     username,
     nickname,
+    slogan,
     profilePictureUrl,
     roles,
     setUser,

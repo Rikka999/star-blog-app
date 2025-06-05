@@ -3,7 +3,7 @@
     <!-- 导航 -->
     <nav class="flex items-center space-x-6">
       <RouterLink to="/" class="font-semibold hover:text-blue-600">主页</RouterLink>
-      <RouterLink to="/post/create" class="font-semibold hover:text-blue-600">文章</RouterLink>
+      <RouterLink to="/post/create" class="font-semibold hover:text-blue-600">发帖</RouterLink>
       <RouterLink to="/tarot" class="font-semibold hover:text-blue-600">塔罗</RouterLink>
     </nav>
     <!-- 搜索框） -->
@@ -40,7 +40,19 @@
         >
           <div><strong>用户名：</strong>{{ userInfo.username }}</div>
           <div><strong>昵称：</strong>{{ userInfo.nickname }}</div>
+          <div><strong>个人简介：</strong>{{ userInfo.slogan }}</div>
+
           <div class="text-right mt-4">
+            <el-button
+              type="primary"
+              plain
+              @click="
+                router.push({
+                  path: `/user/${userInfo.id}`
+                })
+              "
+              >主页</el-button
+            >
             <el-button type="info" plain @click="logout">退出登录</el-button>
           </div>
         </div>
